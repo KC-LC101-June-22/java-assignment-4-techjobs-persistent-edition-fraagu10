@@ -1,43 +1,29 @@
 package org.launchcode.techjobs.persistent.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-public class Job{
+public class Job extends AbstractEntity {
 
-    @Id
-    @GeneratedValue
-    private int id;
-
-    private String name;
-
-    private String employer;
+    @ManyToOne
+    @NotNull(message = "Employer field cannot be empty")
+    private Employer employer;
     private String skills;
 
-    public Job() {
-    }
+    public Job() {}
 
-    public Job(String anEmployer, String someSkills) {
-        super();
-        this.employer = anEmployer;
+    public Job(Employer employer, String someSkills) {
+        this.employer = employer;
         this.skills = someSkills;
     }
 
     // Getters and setters.
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmployer() {
+    public Employer getEmployer() {
         return employer;
     }
 
-    public void setEmployer(String employer) {
+    public void setEmployer(Employer employer) {
         this.employer = employer;
     }
 
