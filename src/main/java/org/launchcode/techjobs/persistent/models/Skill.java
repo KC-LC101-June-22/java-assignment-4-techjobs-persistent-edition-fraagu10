@@ -11,13 +11,8 @@ public class Skill extends AbstractEntity {
 
     @Size(max = 250, message = "Description cannot be longer than 250 characters")
     private String description;
-
     @ManyToMany(mappedBy = "skills")
     private final List<Job> jobs = new ArrayList<>();
-
-    public Skill(@Size(max = 250, message = "Description cannot be longer than 250 characters") String description) {
-        this.description = description;
-    }
 
     public Skill() {}
 
@@ -31,10 +26,5 @@ public class Skill extends AbstractEntity {
 
     public List<Job> getJobs() {
         return jobs;
-    }
-
-    @Override
-    public String toString() {
-        return description;
     }
 }
